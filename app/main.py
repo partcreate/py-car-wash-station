@@ -42,7 +42,13 @@ class CarWashStation:
     def calculate_washing_price(self, car: Car) -> float:
 
         clean_diff = abs(self.clean_power - car.clean_mark)
-        rate = self.average_rating / self.distance_from_city_center
+
+        rate: int | float = 0
+
+        if not self.distance_from_city_center == 0:
+            rate = self.average_rating / self.distance_from_city_center
+        else:
+            rate = self.average_rating
 
         return car.comfort_class * (clean_diff * (rate))
 
